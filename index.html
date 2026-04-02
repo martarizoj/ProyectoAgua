@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Científicos del Agua | Proyecto Educativo | 4º-5º Primaria</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background: #eef5fc;
+            color: #012a4a;
+            line-height: 1.5;
+        }
+
+        .app-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 24px 50px;
+        }
+
+        .master-header {
+            background: linear-gradient(135deg, #013a63 0%, #014f86 100%);
+            border-radius: 2rem;
+            padding: 1.2rem 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 12px 20px -12px rgba(0,0,0,0.25);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .logo-icon {
+            background: white;
+            border-radius: 60px;
+            padding: 12px;
+            font-size: 2rem;
+            color: #014f86;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .logo-text h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            letter-spacing: -0.3px;
+        }
+
+        .logo-text p {
+            color: #cfe8ff;
+            font-size: 0.9rem;
+        }
+
+        .cc-badge {
+            background: #f9f7f3;
+            padding: 8px 18px;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            color: #2c3e50;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+        }
+        
+        .cc-badge:hover {
+            background: #fff6e0;
+            transform: scale(1.02);
+        }
+
+        .cc-license-full {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .cc-license-full img {
+            height: 28px;
+            width: auto;
+        }
+        .cc-text {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+
+        .nav-pages {
+            display: flex;
+            gap: 1rem;
+            background: white;
+            padding: 0.5rem;
+            border-radius: 4rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 1px solid #d4e2f0;
+        }
+
+        .nav-btn {
+            flex: 1;
+            text-align: center;
+            background: transparent;
+            border: none;
+            padding: 0.9rem 0.5rem;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 3rem;
+            cursor: pointer;
+            transition: 0.2s;
+            color: #2c5f8a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .nav-btn i {
+            font-size: 1.3rem;
+        }
+
+        .nav-btn.active {
+            background: #014f86;
+            color: white;
+            box-shadow: 0 6px 12px rgba(1,79,134,0.2);
+        }
+
+        .page {
+            display: none;
+            animation: fade 0.25s ease;
+        }
+
+        .page.active-page {
+            display: block;
+        }
+
+        @keyframes fade {
+            from { opacity: 0; transform: translateY(6px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 1.8rem;
+            margin-top: 1rem;
+        }
+
+        .card-modern {
+            background: white;
+            border-radius: 1.8rem;
+            padding: 1.6rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #e2edf7;
+        }
+
+        .card-modern:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -12px rgba(1,79,134,0.2);
+        }
+
+        .badge-time, .badge-group {
+            background: #eef2fa;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.3rem 0.9rem;
+            border-radius: 30px;
+            display: inline-block;
+            margin: 10px 0 8px;
+            color: #014f86;
+        }
+
+        .btn-recurso {
+            display: inline-block;
+            background: #eef2fc;
+            border-radius: 2rem;
+            padding: 0.7rem 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: #014f86;
+            border: 1px solid #cbdde9;
+            transition: 0.2s;
+            width: 100%;
+            text-align: center;
+            margin-top: 12px;
+            cursor: pointer;
+        }
+
+        .btn-recurso i {
+            margin-right: 8px;
+        }
+
+        .btn-recurso:hover {
+            background: #d4e3f5;
+            border-color: #7ca5c4;
+        }
+
+        .upload-area {
+            background: #f7fafd;
+            border-radius: 1.5rem;
+            padding: 1rem;
+            margin-top: 1rem;
+            border: 1px dashed #3a7ca5;
+        }
+
+        .theory-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            background: white;
+            border-radius: 2rem;
+            padding: 0;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .theory-tabs {
+            flex: 0 0 260px;
+            background: #f4f9fe;
+            padding: 2rem 0 2rem 1rem;
+            border-right: 1px solid #deecf5;
+        }
+
+        .tab-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background: transparent;
+            border: none;
+            padding: 12px 20px;
+            margin: 4px 0;
+            font-weight: 600;
+            border-radius: 40px 0 0 40px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            color: #1f506e;
+            transition: 0.2s;
+        }
+
+        .tab-btn i {
+            width: 28px;
+            margin-right: 12px;
+        }
+
+        .tab-btn.active-tab {
+            background: #ffffff;
+            color: #014f86;
+            box-shadow: -4px 0 0 #014f86;
+            font-weight: 700;
+        }
+
+        .theory-content {
+            flex: 1;
+            padding: 2rem 2rem 2rem 1rem;
+            background: white;
+        }
+
+        .theory-pane {
+            display: none;
+        }
+
+        .theory-pane.active-pane {
+            display: block;
+        }
+
+        .sub-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1.2rem;
+        }
+
+        .info-card {
+            background: #f8fbfe;
+            border-radius: 1.2rem;
+            padding: 1.2rem;
+            border-left: 5px solid #2c7da0;
+            flex: 1 1 260px;
+        }
+
+        .rubric-table, .checklist-table, .autoeval-table {
+            background: #f8fafc;
+            border-radius: 1rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        th, td {
+            border: 1px solid #cbdde9;
+            padding: 10px 8px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background: #e4f0fa;
+            color: #013a63;
+        }
+
+        .contenidos-lista {
+            list-style: none;
+            padding-left: 0;
+        }
+        .contenidos-lista li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .contenidos-lista li:before {
+            content: "•";
+            color: #014f86;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .footer-names {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid rgba(1,79,134,0.2);
+            font-size: 0.85rem;
+            color: #2c5f8a;
+            background: transparent;
+        }
+
+        /* Estilos para la tarjeta de zona docente */
+        .teacher-card {
+            background: linear-gradient(145deg, #fef9e6 0%, #fff4e0 100%);
+            border-radius: 2rem;
+            padding: 1.8rem;
+            margin-bottom: 2rem;
+            border: 1px solid #ffe0a3;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        .teacher-card:hover {
+            transform: translateY(-4px);
+        }
+        .teacher-thumbnail {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            margin-bottom: 1.2rem;
+            transition: 0.2s;
+            border: 1px solid #ffd966;
+        }
+        .teacher-thumbnail:hover {
+            opacity: 0.95;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        }
+       .teacher-thumbnail img {
+    width: 100%;
+    max-height: 180px;  
+    object-fit: cover;
+}
+        .teacher-card p {
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+        .license-genially {
+            margin-top: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.2s;
+            border-radius: 1.2rem;
+            overflow: hidden;
+            border: 1px solid #cbdde9;
+        }
+        .license-genially img {
+            width: 100%;
+            display: block;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            transition: 0.2s;
+        }
+        .license-genially:hover {
+            transform: scale(1.01);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Modal para mostrar carta y vídeo */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background: white;
+            border-radius: 2rem;
+            max-width: 90%;
+            max-height: 90%;
+            overflow: auto;
+            position: relative;
+            padding: 1.5rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .modal-content.carta-modal {
+            max-width: 650px;
+        }
+        .modal-content.video-modal {
+            max-width: 800px;
+        }
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
+            transition: 0.2s;
+            background: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-close:hover {
+            color: #014f86;
+            background: #eef2fa;
+        }
+        .carta-img-real {
+            width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 1.5rem;
+            background: white;
+        }
+        .modal-content.carta-modal {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        iframe {
+            width: 100%;
+            height: 400px;
+            border-radius: 1rem;
+            border: none;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @media (max-width: 780px) {
+            .theory-tabs {
+                flex: 0 0 100%;
+                border-right: none;
+                border-bottom: 1px solid #deecf5;
+                padding: 1rem;
+            }
+            .tab-btn {
+                display: inline-block;
+                width: auto;
+                border-radius: 40px;
+                margin: 4px;
+            }
+            .tab-btn.active-tab {
+                box-shadow: none;
+                background: #014f86;
+                color: white;
+            }
+            .nav-btn span {
+                display: none;
+            }
+            .nav-btn i {
+                margin: 0;
+            }
+            iframe {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="app-wrapper">
+    <div class="master-header">
+        <div class="logo-area">
+            <div class="logo-icon"><i class="fas fa-droplet"></i></div>
+            <div class="logo-text">
+                <h1>Científicos del agua</h1>
+                <p>4º y 5º Primaria · 9-11 años</p>
+            </div>
+        </div>
+        <!-- CC Badge clickeable -->
+        <div class="cc-badge" id="ccBadgeClick">
+            <div class="cc-license-full">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='28' fill='%23ffffff' stroke='%23888888' stroke-width='1'/%3E%3Ctext x='32' y='42' font-size='20' text-anchor='middle' fill='%23000' font-weight='bold'%3ECC%3C/text%3E%3C/svg%3E" alt="CC">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='28' fill='%23ffffff' stroke='%23888888' stroke-width='1'/%3E%3Ctext x='32' y='44' font-size='22' text-anchor='middle' fill='%23000'%3EBY%3C/text%3E%3C/svg%3E" alt="BY">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='28' fill='%23ffffff' stroke='%23888888' stroke-width='1'/%3E%3Ctext x='32' y='44' font-size='22' text-anchor='middle' fill='%23000'%3ENC%3C/text%3E%3C/svg%3E" alt="NC">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='28' fill='%23ffffff' stroke='%23888888' stroke-width='1'/%3E%3Ctext x='32' y='44' font-size='22' text-anchor='middle' fill='%23000'%3ESA%3C/text%3E%3C/svg%3E" alt="SA">
+            </div>
+            <span class="cc-text">BY-NC-SA 4.0</span>
+        </div>
+    </div>
+
+    <div class="nav-pages">
+        <button class="nav-btn active" data-page="page-home"><i class="fas fa-leaf"></i> <span>Importancia del agua</span></button>
+        <button class="nav-btn" data-page="page-activities"><i class="fas fa-flask"></i> <span>Misiones y actividades</span></button>
+        <button class="nav-btn" data-page="page-theory"><i class="fas fa-book-open"></i> <span>Marco educativo</span></button>
+    </div>
+
+    <!-- PÁGINA 1: INICIO -->
+    <div id="page-home" class="page active-page">
+        <div style="margin-bottom: 2rem;">
+            <h2 style="font-size: 1.8rem; color:#013a63;"><i class="fas fa-tint"></i> El agua: fuente de vida</h2>
+            <p style="font-size:1.1rem; margin-top:6px;">Descubre por qué el agua es esencial para los seres vivos, la naturaleza y el futuro del planeta.</p>
+        </div>
+        <div class="grid-cards">
+            <div class="card-modern"><i class="fas fa-heartbeat" style="font-size:2rem; color:#2c7da0;"></i><h3 style="margin:12px 0 6px;">Para la vida</h3><p>Esencial para todos los seres vivos, ya que regula funciones vitales</p></div>
+            <div class="card-modern"><i class="fas fa-tree" style="font-size:2rem; color:#2c7da0;"></i><h3 style="margin:12px 0 6px;">Para la naturaleza</h3><p>Ecosistemas acuáticos, biodiversidad y bosques dependen del agua para su equilibrio</p></div>
+            <div class="card-modern"><i class="fas fa-user-md" style="font-size:2rem; color:#2c7da0;"></i><h3 style="margin:12px 0 6px;">Nuestro cuerpo</h3><p>Beber agua limpia es bueno para la salud, digestión y temperatura corporal</p></div>
+            <div class="card-modern"><i class="fas fa-globe-americas" style="font-size:2rem; color:#2c7da0;"></i><h3 style="margin:12px 0 6px;">Para el planeta</h3><p>El agua regula el clima, modela paisajes y es un recurso finito que debemos proteger</p></div>
+        </div>
+        <div style="margin-top: 2rem; background: #d9eafb; border-radius: 2rem; padding: 1.6rem; border: 1px solid white;">
+            <i class="fas fa-hand-sparkles"></i> <strong>Compromiso global:</strong> Cuidar el agua es cuidar la vida. Cada gota cuenta.
+        </div>
+    </div>
+
+    <!-- PÁGINA 2: ACTIVIDADES -->
+    <div id="page-activities" class="page">
+        <div style="background: white; border-radius: 2rem; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+            <div style="display: flex; align-items: center; gap: 12px; border-bottom: 3px solid #cae3f2; padding-bottom: 12px; margin-bottom: 20px;">
+                <i class="fas fa-rocket" style="font-size: 2rem; color:#014f86;"></i>
+                <h2 style="color:#014f86;">Momento de conexión</h2>
+                <span style="background:#eef2fa; border-radius:30px; padding:4px 14px; font-weight:600;">Toda la clase · 40 min total</span>
+            </div>
+            <div class="grid-cards">
+                <div class="card-modern"><i class="fas fa-envelope-open-text"></i><h3>Carta problemática</h3><p>Leemos la carta que nos introduce al reto "Científicos del agua".</p><span class="badge-time"><i class="far fa-clock"></i> Temporalización 5 min</span><button onclick="mostrarCarta()" class="btn-recurso"><i class="fas fa-file-alt"></i> Ver carta</button></div>
+                <div class="card-modern"><i class="fas fa-video"></i><h3>Vídeo motivador</h3><p>¿Está limpia el agua que usamos cada día?</p><span class="badge-time"><i class="far fa-clock"></i> Temporalización 10 min</span><button onclick="mostrarVideo()" class="btn-recurso"><i class="fas fa-play"></i> Ver vídeo</button></div>
+                <div class="card-modern"><i class="fas fa-cloud-rain"></i><h3>Lluvia de ideas</h3><p>Compartimos ideas sobre cómo contaminamos el agua</p><span class="badge-time"><i class="far fa-clock"></i> Temporalización 10 min</span><a href="https://www.menti.com/alxpfnsq9voi" target="_blank" class="btn-recurso"><i class="fas fa-comments"></i> Participar Mentimeter</a></div>
+                <div class="card-modern"><i class="fas fa-question-circle"></i><h3>Cuestionario inicial</h3><p>Activamos conocimientos previos</p><span class="badge-time"><i class="far fa-clock"></i> Temporalización 15 min</span><a href="https://create.kahoot.it/share/que-sabemos-sobre-el-agua/d4f3457e-8f9d-4607-8818-cb5c6c5766f3" target="_blank" class="btn-recurso"><i class="fas fa-gamepad"></i> Jugar Kahoot</a></div>
+            </div>
+        </div>
+
+        <div style="background: white; border-radius: 2rem; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+            <div style="display: flex; align-items: center; gap: 12px; border-bottom: 3px solid #cae3f2; padding-bottom: 12px; margin-bottom: 20px; flex-wrap: wrap;">
+                <i class="fas fa-flask" style="font-size: 2rem; color:#014f86;"></i>
+                <h2 style="color:#014f86;">Misiones de científico</h2>
+                <span style="background:#eef2fa; border-radius:30px; padding:4px 14px; font-weight:600;">En grupos de 3 personas · Duración total: 1h 20min</span>
+            </div>
+            <div class="grid-cards">
+                <div class="card-modern"><i class="fas fa-clipboard-list"></i><h3>Misión 1: Identificamos</h3><p>Clasificamos acciones que contaminan el agua</p><span class="badge-time"><i class="far fa-clock"></i> Temporalización 20 min</span><a href="https://view.genially.com/69a9558deec6c10d8bc523ec/interactive-content-mision-1" target="_blank" class="btn-recurso"><i class="fas fa-puzzle-piece"></i> Ir al Genially</a></div>
+                <div class="card-modern"><i class="fas fa-magnifying-glass"></i><h3>Misión 2: Investigamos</h3><p>Analizamos situaciones reales de nuestro entorno</p><span class="badge-time"><i class="far fa-clock"></i> Temporalización 20 min</span><a href="https://view.genially.com/69a9544b49f8f19c42fe47a8/interactive-content-mision-2" target="_blank" class="btn-recurso"><i class="fas fa-search"></i> Ir al Genially</a></div>
+                <div class="card-modern"><i class="fas fa-pencil-alt"></i><h3>Misión 3: Creamos</h3><p>Elaboramos nuestra propuesta de mejora (cartel, decálogo o vídeo)</p><span class="badge-time"><i class="far fa-clock"></i> Temporalización 40 min</span>
+                    <div style="display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0;">
+                        <button class="btn-recurso" style="width:auto;" onclick="alert('Plantilla para cartel digital: usa Canva o Genially. ¡Sé creativo!')"><i class="fas fa-paintbrush"></i> Cartel</button>
+                        <button class="btn-recurso" style="width:auto;" onclick="alert('Decálogo del agua: 10 reglas para cuidar el recurso. Descarga plantilla en el aula virtual.')"><i class="fas fa-list"></i> Decálogo</button>
+                        <button class="btn-recurso" style="width:auto;" onclick="alert('Graba un vídeo corto con tus recomendaciones. Súbelo a Drive y comparte enlace.')"><i class="fas fa-video"></i> Vídeo</button>
+                    </div>
+                    <div class="upload-area">
+                        <h4 style="font-size:1rem;">📤 Entrega tu propuesta</h4>
+                        <input type="file" id="file-mision" multiple accept=".pdf,.jpg,.png,.mp4,.mov,.docx,.txt">
+                        <label for="file-mision" style="background:#014f86; display:inline-block; margin:10px 0; padding:6px 18px; border-radius:40px; color:white; cursor:pointer;"><i class="fas fa-upload"></i> Seleccionar archivos</label>
+                        <div id="file-list-mision" class="file-list" style="font-size:0.8rem;">No hay archivos</div>
+                        <button class="btn-recurso" onclick="subirArchivosMision()"><i class="fas fa-check-circle"></i> Confirmar entrega</button>
+                        <input type="url" id="link-trabajo" placeholder="Pega enlace a tu trabajo (Drive, Canva...)" style="width:100%; margin-top:12px; padding:8px; border-radius:40px; border:1px solid #bdd4e8;">
+                        <button class="btn-recurso" onclick="guardarEnlaceMision()" style="margin-top:6px;"><i class="fas fa-link"></i> Entregar enlace</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: #e2f0fc; border-radius: 1.8rem; padding: 1.5rem;">
+            <h3><i class="fas fa-brain"></i> Reflexión y compromiso personal</h3>
+            <textarea id="compromisoGlobal" rows="3" placeholder="Tras las misiones, escribe tu compromiso para cuidar el agua..." style="width:100%; border-radius:1rem; border:1px solid #9bbad0; padding:12px; margin:12px 0;"></textarea>
+            <button class="btn-recurso" style="width:auto;" onclick="guardarCompromisoFinal()"><i class="fas fa-save"></i> Guardar compromiso</button>
+            <div id="msgCompromiso"></div>
+            <div id="insigniaFinal" style="display:none; background:#ffdd88; border-radius:60px; padding:12px; margin-top:16px; text-align:center;"><i class="fas fa-medal"></i> ¡Científico del Agua certificado!</div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 3: MARCO EDUCATIVO (TEÓRICA) -->
+    <div id="page-theory" class="page">
+        <div class="theory-container">
+            <div class="theory-tabs">
+                <!-- NUEVO BOTÓN ZONA DOCENTE (primero) -->
+                <button class="tab-btn active-tab" data-tab="tab-docente"><i class="fas fa-chalkboard-user"></i> Zona docente</button>
+                <button class="tab-btn" data-tab="tab-destinatarios"><i class="fas fa-users"></i> Destinatarios</button>
+                <button class="tab-btn" data-tab="tab-objetivo"><i class="fas fa-bullseye"></i> Objetivo de aprendizaje</button>
+                <button class="tab-btn" data-tab="tab-competencias"><i class="fas fa-star-of-life"></i> Competencias</button>
+                <button class="tab-btn" data-tab="tab-contenidos"><i class="fas fa-layer-group"></i> Contenidos</button>
+                <button class="tab-btn" data-tab="tab-dua"><i class="fas fa-universal-access"></i> DUA</button>
+                <button class="tab-btn" data-tab="tab-ods"><i class="fas fa-globe"></i> ODS</button>
+                <button class="tab-btn" data-tab="tab-evaluacion"><i class="fas fa-clipboard-check"></i> Evaluación</button>
+                <!-- NUEVO BOTÓN LICENCIA (último) -->
+                <button class="tab-btn" data-tab="tab-licencia"><i class="fas fa-copyright"></i> Licencia</button>
+            </div>
+            <div class="theory-content">
+                <!-- PANEL ZONA DOCENTE (primero y activo por defecto) -->
+                <div id="tab-docente" class="theory-pane active-pane">
+                    <h2><i class="fas fa-chalkboard-user"></i> Zona docente</h2>
+                    <div class="teacher-card">
+                        <div class="teacher-thumbnail" onclick="window.open('https://view.genially.com/69c9519ceed0f075b4da7a22', '_blank')">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect width='800' height='450' fill='%23386575'/%3E%3Ctext x='50%25' y='50%25' font-size='28' fill='%23ffffff' text-anchor='middle' dominant-baseline='middle' font-weight='bold'%3EGuía docente%3C/text%3E%3C/svg%3E" alt="Vista previa Genially docente">
+                        </div>
+                        <p><strong>📘 Descripción completa de las actividades</strong> — Haz clic en la imagen para acceder a la guía docente con todos los detalles, secuenciación, recursos y orientaciones didácticas.</p>
+                        <button class="btn-recurso" style="margin-top: 1rem;" onclick="window.open('https://view.genially.com/69c9519ceed0f075b4da7a22', '_blank')"><i class="fas fa-chalkboard"></i> Abrir guía docente</button>
+                    </div>
+                </div>
+
+                <div id="tab-destinatarios" class="theory-pane">
+                    <h2><i class="fas fa-user-graduate"></i> Destinatarios</h2>
+                    <p style="margin-top:1rem;">Está dirigido a alumnos de <strong>4º y 5º de primaria</strong>, con edades comprendidas entre los 9 y 11 años, en el área de Ciencias Naturales.</p>
+                </div>
+                <div id="tab-objetivo" class="theory-pane">
+                    <h2><i class="fas fa-bullseye"></i> Objetivo de aprendizaje</h2>
+                    <p>Comprender cómo se produce la contaminación del agua y relacionar el uso cotidiano del agua con acciones responsables que contribuyan a su cuidado.</p>
+                </div>
+                <div id="tab-competencias" class="theory-pane">
+                    <h2>Competencias trabajadas</h2>
+                    <ul style="margin-top:1rem; list-style: none;"><li><i class="fas fa-check-circle"></i> Competencia en el conocimiento y la interacción con el mundo físico.</li><li><i class="fas fa-check-circle"></i> Competencia digital.</li><li><i class="fas fa-check-circle"></i> Competencia en conciencia y sostenibilidad ambiental.</li><li><i class="fas fa-check-circle"></i> Competencia social y cívica.</li><li><i class="fas fa-check-circle"></i> Competencia para aprender a aprender.</li></ul>
+                </div>
+                <div id="tab-contenidos" class="theory-pane"><h2>Contenidos trabajados</h2><div><p><strong>Conceptuales:</strong></p><ul class="contenidos-lista"><li>El agua como recurso natural.</li><li>Causas y consecuencias de la contaminación del agua.</li><li>Uso responsable y sostenible del agua.</li></ul><p><strong>Procedimentales:</strong></p><ul class="contenidos-lista"><li>Análisis de situaciones cotidianas.</li><li>Identificación de acciones contaminantes.</li><li>Elaboración de propuestas de mejora.</li></ul><p><strong>Actitudinales:</strong></p><ul class="contenidos-lista"><li>Responsabilidad ambiental.</li><li>Compromiso con el cuidado del entorno.</li><li>Trabajo cooperativo.</li></ul></div></div>
+                <div id="tab-dua" class="theory-pane">
+                    <h2>Aplicación del Diseño Universal para el Aprendizaje (DUA)</h2>
+                    <p>El diseño de este Recurso Educativo Abierto incorpora de manera planificada los principios del Diseño Universal para el Aprendizaje (DUA)...</p>
+                    <div class="sub-grid" style="margin-top: 1.5rem;">
+                        <div class="info-card"><i class="fas fa-eye"></i> <strong>Múltiples formas de representación</strong><br>Recursos audiovisuales, imágenes, textos estructurados, actividades interactivas.</div>
+                        <div class="info-card"><i class="fas fa-pencil-ruler"></i> <strong>Múltiples formas de acción y expresión</strong><br>Productos finales variados, trabajo cooperativo, roles adaptados.</div>
+                        <div class="info-card"><i class="fas fa-heart"></i> <strong>Múltiples formas de implicación</strong><br>Narrativa gamificada, reto significativo, compromiso personal.</div>
+                    </div>
+                </div>
+                <div id="tab-ods" class="theory-pane">
+                    <h2>Objetivos de Desarrollo Sostenible (ODS)</h2>
+                    <p>El REA se centra en tres ODS:</p>
+                    <div class="sub-grid" style="margin-top: 1rem;">
+                        <div class="info-card"><strong>ODS 6 - Agua limpia y saneamiento.</strong><br>Contaminación del agua y cómo evitarla.</div>
+                        <div class="info-card"><strong>ODS 13 - Acción por el clima</strong> y <strong>ODS 12 - Producción y consumo responsable.</strong><br>Cuidado del agua y consumo responsable.</div>
+                    </div>
+                </div>
+                <div id="tab-evaluacion" class="theory-pane">
+                    <h2>Evaluación</h2>
+                    <p><strong>Instrumentos de evaluación:</strong></p>
+                    <p><strong>Rúbrica</strong> - Se utilizará para evaluar el producto final elaborado por el alumnado, permitiendo valorar tanto la comprensión conceptual como la calidad de la propuesta de mejora y el grado de participación cooperativa.</p>
+                    <div class="rubric-table">
+                        <table>
+                            <thead><tr><th>Criterio</th><th>Nivel Alto</th><th>Nivel Medio</th><th>Nivel básico</th></tr></thead>
+                            <tbody>
+                                <tr><td>Comprensión del problema</td><td>Explica claramente cómo se contamina el agua y sus consecuencias</td><td>Identifica causas pero con explicaciones limitadas</td><td>Presenta ideas poco claras o incompletas</td></tr>
+                                <tr><td>Propuesta de mejora</td><td>Propone acciones realistas y aplicables</td><td>Propone acciones generales</td><td>Propuestas poco concretas</td></tr>
+                                <tr><td>Creatividad y claridad</td><td>Producto atractivo, organizado y comprensible</td><td>Producto adecuado pero mejorable</td><td>Producto poco estructurado</td></tr>
+                                <tr><td>Trabajo cooperativo</td><td>Participación equilibrada del grupo</td><td>Participación parcial</td><td>Participación desigual</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p><strong>Lista de cotejo</strong> - La lista de cotejo se utilizará como instrumento de evaluación formativa durante el desarrollo de las actividades, permitiendo al docente registrar el progreso individual y grupal del alumnado.</p>
+                    <div class="checklist-table">
+                        <table>
+                            <thead><tr><th>Indicador</th><th>Sí</th><th>En proceso</th><th>No</th></tr></thead>
+                            <tbody>
+                                <tr><td>Participa activamente en las misiones propuestas</td><td>☐</td><td>☐</td><td>☐</td></tr>
+                                <tr><td>Identifica correctamente acciones que contaminan el agua</td><td>☐</td><td>☐</td><td>☐</td></tr>
+                                <tr><td>Explica la relación causa-consecuencia</td><td>☐</td><td>☐</td><td>☐</td></tr>
+                                <tr><td>Aporta ideas en el trabajo cooperativo</td><td>☐</td><td>☐</td><td>☐</td></tr>
+                                <tr><td>Respeta las opiniones del grupo</td><td>☐</td><td>☐</td><td>☐</td></tr>
+                                <tr><td>Contribuye al producto final</td><td>☐</td><td>☐</td><td>☐</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p><strong>Autoevaluación</strong> - La autoevaluación favorece la reflexión y la toma de conciencia sobre el propio aprendizaje, promoviendo la autorregulación y la transferencia de lo aprendido a la vida cotidiana.</p>
+                    <div style="background:#fef7e0; padding:0.8rem; border-radius:1rem; margin:1rem 0; display:inline-block;">
+                        <span style="font-size:1.2rem; font-weight:500;">😊 = Sí &nbsp;&nbsp; 😐 = A veces &nbsp;&nbsp; 😕 = Todavía no</span>
+                    </div>
+                    <div class="autoeval-table">
+                        <table>
+                            <thead><tr><th>Ítem</th><th>😊</th><th>😐</th><th>😕</th></tr></thead>
+                            <tbody>
+                                <tr><td>He comprendido cómo se contamina el agua</td><td>☐</td><td>☐</td><td>☐</td></tr>
+                                <tr><td>Sé explicar cómo mis acciones pueden afectar al agua</td><td>☐</td><td>☐</td><td>☐</td></tr>
+                                <tr><td>He participado activamente en las actividades</td><td>☐</td><td>☐</td><td>☐</td></tr>
+                                <tr><td>He aportado ideas al trabajo en grupo</td><td>☐</td><td>☐</td><td>☐</td></tr>
+                                <tr><td>He respetado las opiniones de mis compañeros</td><td>☐</td><td>☐</td><td>☐</td></tr>
+                                <tr><td>He aprendido algo que puedo aplicar en mi vida diaria</td><td>☐</td><td>☐</td><td>☐</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- PANEL LICENCIA (último) -->
+                <div id="tab-licencia" class="theory-pane">
+                    <h2><i class="fas fa-copyright"></i> Licencia y atribución</h2>
+                    <p>Este Recurso Educativo Abierto se comparte bajo licencia <strong>Creative Commons BY-NC-SA 4.0</strong>. Puedes usar, compartir y adaptar el material siempre que menciones la autoría, no lo uses con fines comerciales y lo compartas en los mismos términos.</p>
+                    <div class="license-genially" onclick="window.open('https://view.genially.com/69ca8e4feda246b6a4ac3c74', '_blank')">
+    <img src="imglicencia.png" alt="Licencia REA">
+</div>
+            </div>
+        </div>
+    </div>
+    <!-- FOOTER -->
+    <div class="footer-names">
+        <p>Proyecto Científicos del agua · Máster en Tecnología Educativa: E-Learning y Gestión del Conocimiento</p>
+        <p>Curso 2025-2026 · Gerard Bonet Garsaball, MªRosario López Molina, Jordi Marcó Santacana, Estrella Navarro Peñaranda, Marta Rizo Jareño</p>
+    </div>
+</div>
+
+<!-- MODAL CARTA -->
+<div id="modalCarta" class="modal">
+    <div class="modal-content carta-modal">
+        <span class="modal-close" onclick="cerrarCarta()">&times;</span>
+        <img class="carta-img-real" src="img/carta.png" alt="Carta de misión Científicos del Agua" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22500%22 height=%22700%22%3E%3Crect width=%22500%22 height=%22700%22 fill=%22%23f5e7d3%22/%3E%3Ctext x=%2250%22 y=%22100%22 font-size=%2220%22 fill=%22%23333%22%3ECarta no encontrada%3C/text%3E%3C/svg%3E'">
+    </div>
+</div>
+
+<!-- MODAL VÍDEO YOUTUBE -->
+<div id="modalVideo" class="modal">
+    <div class="modal-content video-modal">
+        <span class="modal-close" onclick="cerrarVideo()">&times;</span>
+        <iframe id="videoPlayer" width="100%" height="400" src="https://www.youtube.com/embed/oID8bic-emg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+</div>
+
+<script>
+    // Navegación entre páginas
+    const navBtns = document.querySelectorAll('.nav-btn');
+    const pages = document.querySelectorAll('.page');
+    navBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const pageId = btn.getAttribute('data-page');
+            navBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            pages.forEach(page => page.classList.remove('active-page'));
+            document.getElementById(pageId).classList.add('active-page');
+        });
+    });
+
+    // Pestañas de la página teórica (actualizado con nuevas pestañas)
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const panes = document.querySelectorAll('.theory-pane');
+    if (tabBtns.length) {
+        tabBtns.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const target = tab.getAttribute('data-tab');
+                tabBtns.forEach(t => t.classList.remove('active-tab'));
+                tab.classList.add('active-tab');
+                panes.forEach(pane => pane.classList.remove('active-pane'));
+                document.getElementById(target).classList.add('active-pane');
+            });
+        });
+    }
+
+    // Funciones para la carta
+    function mostrarCarta() {
+        document.getElementById('modalCarta').classList.add('active');
+    }
+    function cerrarCarta() {
+        document.getElementById('modalCarta').classList.remove('active');
+    }
+
+    // Funciones para el vídeo de YouTube
+    function mostrarVideo() {
+        const modal = document.getElementById('modalVideo');
+        modal.classList.add('active');
+    }
+    function cerrarVideo() {
+        const modal = document.getElementById('modalVideo');
+        const iframe = document.getElementById('videoPlayer');
+        modal.classList.remove('active');
+        iframe.src = iframe.src;
+    }
+
+    // Cerrar modales al hacer clic fuera
+    window.onclick = function(event) {
+        const modalCarta = document.getElementById('modalCarta');
+        const modalVideo = document.getElementById('modalVideo');
+        if (event.target === modalCarta) cerrarCarta();
+        if (event.target === modalVideo) cerrarVideo();
+    }
+
+    // Funciones para la misión 3
+    const fileInput = document.getElementById('file-mision');
+    const fileListDiv = document.getElementById('file-list-mision');
+    if(fileInput) {
+        fileInput.addEventListener('change', (e) => {
+            if(e.target.files.length) {
+                let names = Array.from(e.target.files).map(f => f.name).join(', ');
+                fileListDiv.innerHTML = `<i class="fas fa-check-circle"></i> Archivos: ${names}`;
+            } else fileListDiv.innerHTML = 'No hay archivos';
+        });
+    }
+    window.subirArchivosMision = function() {
+        if(fileInput && fileInput.files.length) alert('✅ Archivos simulados correctamente. (Entregado al docente)');
+        else alert('❌ Selecciona algún archivo antes de entregar.');
+    };
+    window.guardarEnlaceMision = function() {
+        let link = document.getElementById('link-trabajo').value;
+        if(link && link.startsWith('http')) { alert('✅ Enlace guardado. ¡Propuesta registrada!'); document.getElementById('link-trabajo').value='';}
+        else alert('❌ Introduce un enlace válido (https://...)');
+    };
+    window.guardarCompromisoFinal = function() {
+        let compromiso = document.getElementById('compromisoGlobal').value;
+        if(compromiso.trim()) {
+            document.getElementById('msgCompromiso').innerHTML = '<span style="color:green;">✓ Compromiso guardado, eres un gran científico del agua.</span>';
+            document.getElementById('insigniaFinal').style.display = 'block';
+        } else alert('Escribe tu compromiso antes.');
+    };
+    
+    // ACCIÓN: Al pinchar en el badge CC (BY-NC-SA 4.0) abre el Genially de licencia
+    const ccBadge = document.getElementById('ccBadgeClick');
+    if(ccBadge) {
+        ccBadge.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.open('https://view.genially.com/69ca8e4feda246b6a4ac3c74', '_blank');
+        });
+    }
+</script>
+</body>
+</html>
